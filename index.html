@@ -10,182 +10,177 @@
 </head>
 <body class="day-mode">
 
-<!-- ══════════════════════════════════
-     TOPBAR
-══════════════════════════════════ -->
-<header class="topbar" role="banner">
-  <button id="menuBtn" class="topbar-menu-btn" aria-label="Abrir/cerrar lista de pacientes" aria-expanded="false">
+<!-- ══ TOPBAR ══════════════════════════════════════════════ -->
+<header class="topbar">
+  <!-- Hamburguesa (solo mobile) -->
+  <button id="menuBtn" class="topbar-icon-btn" aria-label="Lista de pacientes" title="Pacientes">
     <svg viewBox="0 0 20 20" fill="none"><path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
   </button>
 
-  <div class="topbar-brand" aria-label="OdontoHC inicio">
-    <svg class="brand-icon" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-      <circle cx="16" cy="16" r="15" stroke="currentColor" stroke-width="1.5"/>
-      <path d="M10 8C10 8 8 12 8 16C8 20 10 24 13 24C15 24 16 22 16 22C16 22 17 24 19 24C22 24 24 20 24 16C24 12 22 8 22 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"/>
-      <path d="M13 8C13 10 14 12 16 12C18 12 19 10 19 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+  <!-- Marca -->
+  <div class="topbar-brand">
+    <svg class="brand-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M8 3C6.5 3 5 5.5 5 8C5 10.5 6.5 13 8.5 13C9.5 13 10 12 10.5 11C11 12 11.5 13 12.5 13C14.5 13 16 10.5 16 8C16 5.5 14.5 3 13 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+      <path d="M8.5 3C8.5 4.5 10 5.5 10.5 5.5C11 5.5 12.5 4.5 12.5 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" fill="none"/>
     </svg>
     <span class="brand-name">OdontoHC</span>
-    <span class="brand-sub">Historia Clínica Dental</span>
   </div>
 
+  <!-- Búsqueda -->
   <div class="topbar-search" role="search">
     <label for="searchInput" class="sr-only">Buscar paciente</label>
-    <svg class="search-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-      <circle cx="8.5" cy="8.5" r="5.5" stroke="currentColor" stroke-width="1.5"/>
-      <path d="M13 13L17 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    <svg class="search-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <circle cx="6.5" cy="6.5" r="4.5" stroke="currentColor" stroke-width="1.4"/>
+      <path d="M10 10L14 14" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
     </svg>
-    <input type="search" id="searchInput" placeholder="Buscar paciente…" autocomplete="off" aria-label="Buscar por nombre, apellidos o DNI"/>
+    <input type="search" id="searchInput" placeholder="Buscar…" autocomplete="off"/>
     <div id="searchDropdown" class="search-dropdown" role="listbox"></div>
   </div>
 
-  <nav class="topbar-actions" aria-label="Acciones principales">
-    <button class="btn btn-primary" id="btnNuevoPaciente" aria-label="Crear nuevo paciente">
-      <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-      <span>Nuevo</span>
+  <!-- Acciones -->
+  <div class="topbar-actions">
+    <button class="topbar-icon-btn accent" id="btnNuevoPaciente" aria-label="Nuevo paciente" title="Nuevo paciente">
+      <svg viewBox="0 0 20 20" fill="none"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
     </button>
-    <button class="btn btn-secondary" id="btnExportPDF" aria-label="Exportar PDF del paciente activo" title="Exportar PDF">
-      <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 3h7l4 4v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4a1 1 0 011-1z" stroke="currentColor" stroke-width="1.5"/><path d="M12 3v4h4M8 12h4M8 15h2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-      <span>PDF</span>
+    <button class="topbar-icon-btn" id="btnExportPDF" aria-label="Exportar PDF" title="Exportar PDF">
+      <svg viewBox="0 0 20 20" fill="none"><path d="M5 3h7l4 4v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4a1 1 0 011-1z" stroke="currentColor" stroke-width="1.5"/><path d="M12 3v5h4M7 13h6M7 16h4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
     </button>
-    <button class="btn btn-icon" id="btnTheme" aria-label="Cambiar modo día/noche" title="Modo día/noche">
-      <svg class="icon-sun" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-        <circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="1.5"/>
-        <path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.22 4.22l1.42 1.42M14.36 14.36l1.42 1.42M4.22 15.78l1.42-1.42M14.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-      </svg>
-      <svg class="icon-moon" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-        <path d="M17 12.5A7.5 7.5 0 117.5 3 5.5 5.5 0 0017 12.5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
-      </svg>
+    <button class="topbar-icon-btn" id="btnTheme" aria-label="Cambiar tema" title="Día / Noche">
+      <svg class="icon-sun" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="3.5" stroke="currentColor" stroke-width="1.5"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.2 4.2l1.4 1.4M14.4 14.4l1.4 1.4M4.2 15.8l1.4-1.4M14.4 5.6l1.4-1.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <svg class="icon-moon" viewBox="0 0 20 20" fill="none"><path d="M16.5 12A6.5 6.5 0 117 3.5 5 5 0 0016.5 12z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
     </button>
-    <button class="btn btn-icon" id="btnAbout" aria-label="Acerca de OdontoHC" title="Acerca de">
-      <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.5"/><path d="M10 9v5M10 7v1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    <button class="topbar-icon-btn" id="btnAbout" aria-label="Acerca de" title="Acerca de">
+      <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7.5" stroke="currentColor" stroke-width="1.5"/><path d="M10 9v5M10 7v.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
     </button>
-  </nav>
+  </div>
 </header>
 
-<!-- Overlay para sidebar mobile -->
-<div id="sidebarOverlay" class="sidebar-overlay" aria-hidden="true"></div>
+<!-- Overlay sidebar mobile -->
+<div id="sidebarOverlay" class="sidebar-overlay"></div>
 
-<!-- ══════════════════════════════════
-     LAYOUT
-══════════════════════════════════ -->
+<!-- ══ LAYOUT ══════════════════════════════════════════════ -->
 <div class="app-layout">
 
-  <!-- SIDEBAR -->
-  <aside class="sidebar" id="sidebar" role="navigation" aria-label="Lista de pacientes">
-    <div class="sidebar-header">
-      <h2>Pacientes</h2>
+  <!-- SIDEBAR ─────────────────────────────── -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-hd">
+      <span class="sidebar-title">Pacientes</span>
       <span id="patientCount" class="badge">0</span>
     </div>
     <ul class="patient-list" id="patientList" role="list"></ul>
   </aside>
 
-  <!-- CONTENIDO PRINCIPAL -->
-  <main class="main-content" id="mainContent" role="main">
+  <!-- MAIN ────────────────────────────────── -->
+  <main class="main-content" id="mainContent">
 
     <!-- EMPTY STATE -->
-    <div class="empty-state" id="emptyState">
-      <svg viewBox="0 0 80 80" fill="none" aria-hidden="true">
-        <circle cx="40" cy="40" r="38" stroke="currentColor" stroke-width="1.5" opacity="0.2"/>
-        <path d="M28 20C28 20 24 28 24 36C24 44 28 52 34 52C38 52 40 48 40 48C40 48 42 52 46 52C52 52 56 44 56 36C56 28 52 20 52 20" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.4"/>
-        <path d="M34 20C34 24 37 27 40 27C43 27 46 24 46 20" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.4"/>
-      </svg>
-      <h3>Sin paciente seleccionado</h3>
-      <p>Selecciona un paciente de la lista o crea uno nuevo para comenzar</p>
-      <button class="btn btn-primary btn-lg" id="btnNuevoPacienteEmpty">
-        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-        Nuevo Paciente
+    <div id="emptyState" class="empty-state">
+      <div class="empty-icon">
+        <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+          <circle cx="24" cy="24" r="22" stroke="currentColor" stroke-width="1.2" opacity="0.25"/>
+          <path d="M16 13C16 13 13 19 13 24C13 29 16 33 19.5 33C21.5 33 22.5 31 23 30C23.5 31 24.5 33 26.5 33C30 33 33 29 33 24C33 19 30 13 30 13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none" opacity="0.5"/>
+          <path d="M19.5 13C19.5 15.5 21.5 17 23 17C24.5 17 26.5 15.5 26.5 13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none" opacity="0.5"/>
+        </svg>
+      </div>
+      <p class="empty-title">Selecciona un paciente</p>
+      <p class="empty-sub">o crea uno nuevo para comenzar</p>
+      <button class="btn btn-primary" id="btnNuevoPacienteEmpty">
+        <svg viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        Nuevo paciente
       </button>
     </div>
 
-    <!-- VISTA PACIENTE -->
-    <div class="patient-view" id="patientView" hidden>
+    <!-- VISTA PACIENTE (oculta por defecto) -->
+    <div id="patientView" class="patient-view" style="display:none">
 
-      <!-- Encabezado del paciente -->
-      <div class="patient-view-header">
-        <h1 class="patient-view-name" id="patientNameHeader"></h1>
+      <!-- Encabezado compacto del paciente -->
+      <div class="pv-header">
+        <div class="pv-header-info">
+          <span class="pv-avatar" id="pvAvatar"></span>
+          <div>
+            <h1 class="pv-name" id="pvName"></h1>
+            <p class="pv-meta" id="pvMeta"></p>
+          </div>
+        </div>
+        <div class="pv-header-actions">
+          <button class="btn btn-sm btn-secondary" id="btnImportJSON" title="Importar JSON">
+            <svg viewBox="0 0 14 14" fill="none"><path d="M7 1v8M4 6l3 3 3-3M2 11h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Import</span>
+          </button>
+          <button class="btn btn-sm btn-secondary" id="btnExportJSON" title="Exportar JSON">
+            <svg viewBox="0 0 14 14" fill="none"><path d="M7 9V1M4 4l3-3 3 3M2 11h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Export</span>
+          </button>
+          <button class="btn btn-sm btn-danger" id="btnDeletePatient" title="Eliminar paciente">
+            <svg viewBox="0 0 14 14" fill="none"><path d="M2 3.5h10M4.5 3.5V2.5h5v1M3.5 3.5l.8 8h5.4l.8-8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Eliminar</span>
+          </button>
+        </div>
       </div>
 
-      <!-- TABS -->
-      <nav class="tabs-nav" role="tablist" aria-label="Secciones de la historia clínica">
-        <button class="tab-btn active" role="tab" data-tab="datos" aria-selected="true" aria-controls="tab-datos">
-          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="7" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M4 17c0-3.31 2.69-6 6-6s6 2.69 6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <!-- TABS ─────────────────────────────── -->
+      <nav class="tabs-nav" role="tablist">
+        <button class="tab-btn active" role="tab" data-tab="datos" aria-selected="true">
+          <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="5.5" r="2.5" stroke="currentColor" stroke-width="1.3"/><path d="M3 14c0-2.76 2.24-5 5-5s5 2.24 5 5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
           <span>Datos</span>
         </button>
-        <button class="tab-btn" role="tab" data-tab="odontograma" aria-selected="false" aria-controls="tab-odontograma">
-          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M7 4C7 4 5 8 5 11C5 14 7 17 9.5 17C11 17 11.5 15.5 12 14C12.5 15.5 13 17 14.5 17C17 17 19 14 19 11C19 8 17 4 17 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg>
+        <button class="tab-btn" role="tab" data-tab="odontograma" aria-selected="false">
+          <svg viewBox="0 0 16 16" fill="none"><path d="M5.5 3C4.5 3 3 5 3 7.5C3 10 4.5 12 6 12C7 12 7.5 11 8 10C8.5 11 9 12 10 12C11.5 12 13 10 13 7.5C13 5 11.5 3 10.5 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" fill="none"/></svg>
           <span>Odontograma</span>
         </button>
-        <button class="tab-btn" role="tab" data-tab="historial" aria-selected="false" aria-controls="tab-historial">
-          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 5h12M4 9h8M4 13h10M4 17h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <button class="tab-btn" role="tab" data-tab="historial" aria-selected="false">
+          <svg viewBox="0 0 16 16" fill="none"><path d="M3 4h10M3 7.5h7M3 11h8M3 14h5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
           <span>Historial</span>
         </button>
-        <button class="tab-btn" role="tab" data-tab="imagenes" aria-selected="false" aria-controls="tab-imagenes">
-          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="3" y="4" width="14" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/><circle cx="8" cy="9" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M3 15l4-4 3 3 3-4 4 5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <button class="tab-btn" role="tab" data-tab="imagenes" aria-selected="false">
+          <svg viewBox="0 0 16 16" fill="none"><rect x="2" y="3" width="12" height="10" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="6" cy="7" r="1.2" stroke="currentColor" stroke-width="1.2"/><path d="M2 12l3.5-3.5 2.5 2.5 2-3 4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           <span>Imágenes</span>
         </button>
-        <button class="tab-btn" role="tab" data-tab="resumen" aria-selected="false" aria-controls="tab-resumen">
-          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="3" y="3" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="11" y="3" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="3" y="11" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="11" y="11" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/></svg>
+        <button class="tab-btn" role="tab" data-tab="resumen" aria-selected="false">
+          <svg viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.3"/><rect x="9" y="2" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.3"/><rect x="2" y="9" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.3"/><rect x="9" y="9" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.3"/></svg>
           <span>Resumen</span>
         </button>
       </nav>
 
-      <!-- TAB: DATOS -->
+      <!-- TAB: DATOS ──────────────────────── -->
       <section class="tab-content active" id="tab-datos" role="tabpanel">
-        <div class="section-header">
-          <h2>Datos del Paciente</h2>
-          <div class="section-actions">
-            <button class="btn btn-sm btn-secondary" id="btnImportJSON">
-              <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8L8 2L14 8M8 2V14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Importar
-            </button>
-            <button class="btn btn-sm btn-secondary" id="btnExportJSON">
-              <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8L8 14L14 8M8 14V2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Exportar
-            </button>
-            <button class="btn btn-sm btn-danger" id="btnDeletePatient">
-              <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 4h10M5 4V3h6v1M4 4l1 9h6l1-9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Eliminar
-            </button>
-          </div>
-        </div>
-
         <form id="patientForm" class="patient-form" novalidate>
           <div class="form-grid">
             <fieldset class="form-section">
               <legend>Datos Administrativos</legend>
               <div class="form-row-2">
                 <div class="form-group">
-                  <label for="fNHC">Nº Historia Clínica</label>
+                  <label for="fNHC">Nº Historia</label>
                   <input type="text" id="fNHC" name="nhc" placeholder="HC-001"/>
                 </div>
                 <div class="form-group">
-                  <label for="fDNI">DNI / NIE <span class="required">*</span></label>
-                  <input type="text" id="fDNI" name="dni" placeholder="12345678A" required/>
+                  <label for="fDNI">DNI / NIE <span class="req">*</span></label>
+                  <input type="text" id="fDNI" name="dni" placeholder="12345678A"/>
                 </div>
               </div>
               <div class="form-row-2">
                 <div class="form-group">
-                  <label for="fNombre">Nombre <span class="required">*</span></label>
+                  <label for="fNombre">Nombre <span class="req">*</span></label>
                   <input type="text" id="fNombre" name="nombre" placeholder="Nombre" required/>
                 </div>
                 <div class="form-group">
-                  <label for="fApellidos">Apellidos <span class="required">*</span></label>
+                  <label for="fApellidos">Apellidos <span class="req">*</span></label>
                   <input type="text" id="fApellidos" name="apellidos" placeholder="Apellido Apellido" required/>
                 </div>
               </div>
               <div class="form-row-3">
                 <div class="form-group">
-                  <label for="fFechaNac">Fecha nacimiento</label>
+                  <label for="fFechaNac">Nacimiento</label>
                   <input type="date" id="fFechaNac" name="fechaNacimiento"/>
                 </div>
                 <div class="form-group">
                   <label for="fEdad">Edad</label>
-                  <input type="text" id="fEdad" name="edad" placeholder="— años" readonly tabindex="-1"/>
+                  <input type="text" id="fEdad" readonly tabindex="-1" placeholder="—"/>
                 </div>
                 <div class="form-group">
                   <label for="fSexo">Sexo</label>
                   <select id="fSexo" name="sexo">
-                    <option value="">— Seleccionar —</option>
+                    <option value="">—</option>
                     <option value="M">Masculino</option>
                     <option value="F">Femenino</option>
                     <option value="O">Otro</option>
@@ -194,7 +189,7 @@
               </div>
               <div class="form-group">
                 <label for="fDireccion">Dirección</label>
-                <input type="text" id="fDireccion" name="direccion" placeholder="Calle, número, municipio"/>
+                <input type="text" id="fDireccion" name="direccion" placeholder="Calle, número, localidad"/>
               </div>
               <div class="form-row-2">
                 <div class="form-group">
@@ -209,58 +204,51 @@
             </fieldset>
 
             <fieldset class="form-section">
-              <legend>Datos Médicos Relevantes</legend>
+              <legend>Datos Médicos</legend>
               <div class="form-group">
-                <label for="fAlergias">
-                  <svg viewBox="0 0 16 16" fill="none" style="width:13px;height:13px;vertical-align:-2px;color:var(--danger)" aria-hidden="true"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.3"/><path d="M8 5v3.5M8 10.5h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-                  Alergias
-                </label>
-                <textarea id="fAlergias" name="alergias" rows="2" placeholder="Penicilina, látex, AINE…"></textarea>
+                <label for="fAlergias"><span class="label-alert">⚠</span> Alergias</label>
+                <textarea id="fAlergias" name="alergias" rows="2" placeholder="Penicilina, látex…"></textarea>
               </div>
               <div class="form-group">
                 <label for="fMedicacion">Medicación habitual</label>
-                <textarea id="fMedicacion" name="medicacion" rows="2" placeholder="Anticoagulantes, antihipertensivos…"></textarea>
+                <textarea id="fMedicacion" name="medicacion" rows="2" placeholder="Anticoagulantes…"></textarea>
               </div>
               <div class="form-group">
                 <label for="fEnfermedades">Enfermedades relevantes</label>
-                <textarea id="fEnfermedades" name="enfermedades" rows="2" placeholder="Diabetes, cardiopatía, HTA…"></textarea>
+                <textarea id="fEnfermedades" name="enfermedades" rows="2" placeholder="Diabetes, HTA…"></textarea>
               </div>
               <div class="form-group">
                 <label for="fObservaciones">Observaciones</label>
-                <textarea id="fObservaciones" name="observaciones" rows="3" placeholder="Notas adicionales del profesional…"></textarea>
+                <textarea id="fObservaciones" name="observaciones" rows="3" placeholder="Notas clínicas…"></textarea>
               </div>
             </fieldset>
           </div>
-          <div class="form-actions">
-            <button type="submit" class="btn btn-primary btn-lg">
-              <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10l5 5 7-8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Guardar Datos
+          <div class="form-save-row">
+            <button type="submit" class="btn btn-primary">
+              <svg viewBox="0 0 16 16" fill="none"><path d="M3 8l4 4 6-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Guardar datos
             </button>
           </div>
         </form>
       </section>
 
-      <!-- TAB: ODONTOGRAMA -->
+      <!-- TAB: ODONTOGRAMA ────────────────── -->
       <section class="tab-content" id="tab-odontograma" role="tabpanel">
-        <div class="section-header">
-          <h2>Odontograma</h2>
-          <div class="legend-bar" aria-label="Leyenda de colores del odontograma">
-            <span class="legend-item"><span class="legend-dot" style="background:var(--color-sano)"></span>Sano</span>
-            <span class="legend-item"><span class="legend-dot" style="background:var(--color-patologia)"></span>Patología</span>
-            <span class="legend-item"><span class="legend-dot" style="background:var(--color-seguimiento)"></span>Seguimiento</span>
-            <span class="legend-item"><span class="legend-dot" style="background:var(--color-tratado)"></span>Tratado</span>
-            <span class="legend-item"><span class="legend-dot" style="background:var(--color-implante)"></span>Implante</span>
-            <span class="legend-item"><span class="legend-dot" style="background:var(--color-ausente)"></span>Ausente</span>
+        <div class="odonto-header">
+          <div class="legend-bar">
+            <span class="legend-item"><i style="background:var(--c-sano)"></i>Sano</span>
+            <span class="legend-item"><i style="background:var(--c-patologia)"></i>Patología</span>
+            <span class="legend-item"><i style="background:var(--c-seguimiento)"></i>Seguimiento</span>
+            <span class="legend-item"><i style="background:var(--c-tratado)"></i>Tratado</span>
+            <span class="legend-item"><i style="background:var(--c-implante)"></i>Implante</span>
+            <span class="legend-item"><i style="background:var(--c-ausente)"></i>Ausente</span>
           </div>
         </div>
-        <div class="odontograma-container" id="odontogramaContainer"></div>
+        <div class="odontograma-wrap" id="odontogramaContainer"></div>
       </section>
 
-      <!-- TAB: HISTORIAL -->
+      <!-- TAB: HISTORIAL ──────────────────── -->
       <section class="tab-content" id="tab-historial" role="tabpanel">
-        <div class="section-header">
-          <h2>Historial Clínico</h2>
-        </div>
         <div class="filter-bar">
           <div class="form-group">
             <label for="filtFechaDesde">Desde</label>
@@ -272,7 +260,7 @@
           </div>
           <div class="form-group">
             <label for="filtPieza">Pieza</label>
-            <input type="text" id="filtPieza" placeholder="Ej: 16" maxlength="2" style="max-width:80px"/>
+            <input type="text" id="filtPieza" placeholder="ej: 16" maxlength="2" style="width:64px"/>
           </div>
           <div class="form-group">
             <label for="filtTipo">Tipo</label>
@@ -288,52 +276,44 @@
         <div class="timeline" id="timeline" aria-live="polite"></div>
       </section>
 
-      <!-- TAB: IMÁGENES -->
+      <!-- TAB: IMÁGENES ───────────────────── -->
       <section class="tab-content" id="tab-imagenes" role="tabpanel">
-        <div class="section-header">
-          <h2>Galería de Imágenes Clínicas</h2>
-        </div>
-        <div class="dropzone" id="dropzone" tabindex="0" role="button" aria-label="Área de carga de imágenes. Arrastra o haz clic para seleccionar">
-          <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
-            <path d="M24 8V32M14 18L24 8L34 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M8 38H40" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <div class="dropzone" id="dropzone" tabindex="0" role="button" aria-label="Arrastra o haz clic para añadir imágenes">
+          <svg viewBox="0 0 40 40" fill="none" aria-hidden="true">
+            <path d="M20 6v22M12 14l8-8 8 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M6 32h28" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
           </svg>
-          <p>Arrastra imágenes aquí o <strong>haz clic para seleccionar</strong></p>
-          <span class="dropzone-hint">Fotografías intraorales · Radiografías · TAC — JPG, PNG, WEBP</span>
-          <input type="file" id="fileInput" accept="image/*" multiple aria-hidden="true" tabindex="-1"/>
+          <p>Arrastra imágenes o <strong>haz clic para seleccionar</strong></p>
+          <span class="dropzone-hint">Radiografías · Fotos intraorales · TAC — JPG, PNG, WEBP</span>
+          <input type="file" id="fileInput" accept="image/*" multiple tabindex="-1"/>
         </div>
-        <div class="gallery" id="gallery" aria-label="Galería de imágenes clínicas"></div>
+        <div class="gallery" id="gallery"></div>
       </section>
 
-      <!-- TAB: RESUMEN -->
+      <!-- TAB: RESUMEN ────────────────────── -->
       <section class="tab-content" id="tab-resumen" role="tabpanel">
-        <div class="section-header">
-          <h2>Resumen Clínico</h2>
-        </div>
         <div class="stats-grid" id="statsGrid"></div>
         <div class="last-visit-bar" id="lastVisitBar"></div>
       </section>
 
-    </div><!-- /patient-view -->
+    </div><!-- /patientView -->
   </main>
 </div><!-- /app-layout -->
 
-<!-- ══════════════════════════════════
-     MODAL: DIENTE
-══════════════════════════════════ -->
+<!-- ══ MODAL: DIENTE ════════════════════════════════════════ -->
 <div class="modal-overlay" id="toothModal" role="dialog" aria-modal="true" aria-labelledby="toothModalTitle" hidden>
   <div class="modal modal-tooth" tabindex="-1">
-    <div class="modal-header">
+    <div class="modal-hd">
       <h3 id="toothModalTitle">Pieza Dental</h3>
       <button class="btn-close" id="closeToothModal" aria-label="Cerrar">
-        <svg viewBox="0 0 20 20" fill="none"><path d="M5 5L15 15M15 5L5 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <svg viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
       </button>
     </div>
-    <div class="modal-body">
+    <div class="modal-bd">
       <div class="modal-tabs" role="tablist">
-        <button class="modal-tab active" data-mtab="patologia" role="tab" aria-selected="true">Patología</button>
-        <button class="modal-tab" data-mtab="intervencion" role="tab" aria-selected="false">Intervención</button>
-        <button class="modal-tab" data-mtab="historial" role="tab" aria-selected="false">Historial pieza</button>
+        <button class="modal-tab active" data-mtab="patologia"   role="tab" aria-selected="true">Patología</button>
+        <button class="modal-tab"         data-mtab="intervencion" role="tab" aria-selected="false">Intervención</button>
+        <button class="modal-tab"         data-mtab="historial"    role="tab" aria-selected="false">Historial</button>
       </div>
 
       <!-- Patología -->
@@ -341,31 +321,22 @@
         <form id="patologiaForm" novalidate>
           <div class="form-row-2">
             <div class="form-group">
-              <label for="pTipo">Patología <span class="required">*</span></label>
+              <label for="pTipo">Patología <span class="req">*</span></label>
               <select id="pTipo" name="tipo" required>
                 <option value="">— Seleccionar —</option>
-                <option value="Caries">Caries</option>
-                <option value="Caries recurrente">Caries recurrente</option>
-                <option value="Fractura">Fractura</option>
-                <option value="Fisura">Fisura</option>
-                <option value="Desgaste">Desgaste</option>
-                <option value="Erosión">Erosión</option>
-                <option value="Bruxismo">Bruxismo</option>
-                <option value="Periodontitis">Periodontitis</option>
-                <option value="Gingivitis">Gingivitis</option>
-                <option value="Movilidad dental">Movilidad dental</option>
-                <option value="Recesión gingival">Recesión gingival</option>
-                <option value="Lesión periapical">Lesión periapical</option>
-                <option value="Hipersensibilidad">Hipersensibilidad</option>
-                <option value="Ausencia dental">Ausencia dental</option>
+                <option>Caries</option><option>Caries recurrente</option>
+                <option>Fractura</option><option>Fisura</option>
+                <option>Desgaste</option><option>Erosión</option>
+                <option>Bruxismo</option><option>Periodontitis</option>
+                <option>Gingivitis</option><option>Movilidad dental</option>
+                <option>Recesión gingival</option><option>Lesión periapical</option>
+                <option>Hipersensibilidad</option><option>Ausencia dental</option>
               </select>
             </div>
             <div class="form-group">
               <label for="pEstado">Estado</label>
               <select id="pEstado" name="estado">
-                <option value="Activo">Activo</option>
-                <option value="Controlado">Controlado</option>
-                <option value="Resuelto">Resuelto</option>
+                <option>Activo</option><option>Controlado</option><option>Resuelto</option>
               </select>
             </div>
           </div>
@@ -373,9 +344,7 @@
             <div class="form-group">
               <label for="pGravedad">Gravedad</label>
               <select id="pGravedad" name="gravedad">
-                <option value="Leve">Leve</option>
-                <option value="Moderada">Moderada</option>
-                <option value="Grave">Grave</option>
+                <option>Leve</option><option>Moderada</option><option>Grave</option>
               </select>
             </div>
             <div class="form-group">
@@ -387,11 +356,8 @@
             <label for="pNota">Observaciones</label>
             <textarea id="pNota" name="nota" rows="2" placeholder="Notas clínicas…"></textarea>
           </div>
-          <div class="form-actions">
-            <button type="submit" class="btn btn-primary">
-              <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8l4 4 6-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Registrar Patología
-            </button>
+          <div class="form-save-row">
+            <button type="submit" class="btn btn-primary btn-sm">Registrar patología</button>
           </div>
         </form>
       </div>
@@ -401,21 +367,15 @@
         <form id="intervencionForm" novalidate>
           <div class="form-row-2">
             <div class="form-group">
-              <label for="iTipo">Intervención <span class="required">*</span></label>
+              <label for="iTipo">Intervención <span class="req">*</span></label>
               <select id="iTipo" name="tipo" required>
                 <option value="">— Seleccionar —</option>
-                <option value="Obturación">Obturación</option>
-                <option value="Endodoncia">Endodoncia</option>
-                <option value="Corona">Corona</option>
-                <option value="Incrustación">Incrustación</option>
-                <option value="Carilla">Carilla</option>
-                <option value="Extracción">Extracción</option>
-                <option value="Implante">Implante</option>
-                <option value="Prótesis">Prótesis</option>
-                <option value="Ortodoncia">Ortodoncia</option>
-                <option value="Blanqueamiento">Blanqueamiento</option>
-                <option value="Tartrectomía">Tartrectomía</option>
-                <option value="Cirugía periodontal">Cirugía periodontal</option>
+                <option>Obturación</option><option>Endodoncia</option>
+                <option>Corona</option><option>Incrustación</option>
+                <option>Carilla</option><option>Extracción</option>
+                <option>Implante</option><option>Prótesis</option>
+                <option>Ortodoncia</option><option>Blanqueamiento</option>
+                <option>Tartrectomía</option><option>Cirugía periodontal</option>
               </select>
             </div>
             <div class="form-group">
@@ -435,17 +395,14 @@
           </div>
           <div class="form-group">
             <label for="iDescripcion">Descripción</label>
-            <textarea id="iDescripcion" name="descripcion" rows="2" placeholder="Descripción del procedimiento…"></textarea>
+            <textarea id="iDescripcion" name="descripcion" rows="2" placeholder="Procedimiento…"></textarea>
           </div>
           <div class="form-group">
             <label for="iObservaciones">Observaciones</label>
             <textarea id="iObservaciones" name="observaciones" rows="2" placeholder="Notas post-intervención…"></textarea>
           </div>
-          <div class="form-actions">
-            <button type="submit" class="btn btn-primary">
-              <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8l4 4 6-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Registrar Intervención
-            </button>
+          <div class="form-save-row">
+            <button type="submit" class="btn btn-primary btn-sm">Registrar intervención</button>
           </div>
         </form>
       </div>
@@ -458,92 +415,75 @@
   </div>
 </div>
 
-<!-- ══════════════════════════════════
-     MODAL: NUEVO PACIENTE
-══════════════════════════════════ -->
-<div class="modal-overlay" id="newPatientModal" role="dialog" aria-modal="true" aria-labelledby="newPatientTitle" hidden>
+<!-- ══ MODAL: NUEVO PACIENTE ══════════════════════════════ -->
+<div class="modal-overlay" id="newPatientModal" role="dialog" aria-modal="true" aria-labelledby="npTitle" hidden>
   <div class="modal modal-sm">
-    <div class="modal-header">
-      <h3 id="newPatientTitle">Nuevo Paciente</h3>
+    <div class="modal-hd">
+      <h3 id="npTitle">Nuevo Paciente</h3>
       <button class="btn-close" id="closeNewPatient" aria-label="Cerrar">
-        <svg viewBox="0 0 20 20" fill="none"><path d="M5 5L15 15M15 5L5 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <svg viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
       </button>
     </div>
-    <div class="modal-body">
+    <div class="modal-bd">
       <form id="newPatientForm" novalidate>
         <div class="form-group">
-          <label for="npNombre">Nombre <span class="required">*</span></label>
+          <label for="npNombre">Nombre <span class="req">*</span></label>
           <input type="text" id="npNombre" name="nombre" required placeholder="Nombre"/>
         </div>
         <div class="form-group">
-          <label for="npApellidos">Apellidos <span class="required">*</span></label>
+          <label for="npApellidos">Apellidos <span class="req">*</span></label>
           <input type="text" id="npApellidos" name="apellidos" required placeholder="Apellido Apellido"/>
         </div>
         <div class="form-group">
           <label for="npDNI">DNI / NIE</label>
-          <input type="text" id="npDNI" name="dni" placeholder="12345678A"/>
+          <input type="text" id="npDNI" name="dni" placeholder="Opcional"/>
         </div>
-        <div class="form-actions">
-          <button type="button" class="btn btn-secondary" id="cancelNewPatient">Cancelar</button>
-          <button type="submit" class="btn btn-primary">Crear Paciente</button>
+        <div class="form-save-row">
+          <button type="button" class="btn btn-ghost" id="cancelNewPatient">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Crear paciente</button>
         </div>
       </form>
     </div>
   </div>
 </div>
 
-<!-- ══════════════════════════════════
-     MODAL: LIGHTBOX
-══════════════════════════════════ -->
-<div class="modal-overlay lightbox-overlay" id="lightboxModal" role="dialog" aria-modal="true" aria-label="Vista de imagen clínica" hidden>
-  <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Imagen anterior">
-    <svg viewBox="0 0 24 24" fill="none"><path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-  </button>
-  <div class="lightbox-content">
-    <img id="lightboxImg" src="" alt="Imagen clínica ampliada"/>
-    <p id="lightboxName" class="lightbox-name"></p>
+<!-- ══ MODAL: LIGHTBOX ════════════════════════════════════ -->
+<div class="modal-overlay lightbox-overlay" id="lightboxModal" role="dialog" aria-modal="true" hidden>
+  <button class="lb-nav lb-prev" id="lightboxPrev" aria-label="Anterior"><svg viewBox="0 0 24 24" fill="none"><path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  <div class="lb-content">
+    <img id="lightboxImg" src="" alt="Imagen clínica"/>
+    <p id="lightboxName" class="lb-name"></p>
   </div>
-  <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Imagen siguiente">
-    <svg viewBox="0 0 24 24" fill="none"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-  </button>
-  <button class="btn-close lightbox-close" id="closeLightbox" aria-label="Cerrar visor">
-    <svg viewBox="0 0 20 20" fill="none"><path d="M5 5L15 15M15 5L5 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-  </button>
+  <button class="lb-nav lb-next" id="lightboxNext" aria-label="Siguiente"><svg viewBox="0 0 24 24" fill="none"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  <button class="btn-close lb-close" id="closeLightbox" aria-label="Cerrar"><svg viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
 </div>
 
-<!-- ══════════════════════════════════
-     MODAL: ACERCA DE
-══════════════════════════════════ -->
+<!-- ══ MODAL: ACERCA DE ════════════════════════════════════ -->
 <div class="modal-overlay" id="aboutModal" role="dialog" aria-modal="true" aria-labelledby="aboutTitle" hidden>
   <div class="modal modal-about">
-    <button class="btn-close about-close" id="closeAbout" aria-label="Cerrar">
-      <svg viewBox="0 0 20 20" fill="none"><path d="M5 5L15 15M15 5L5 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-    </button>
+    <button class="btn-close about-close" id="closeAbout" aria-label="Cerrar"><svg viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
     <div class="about-body">
-      <div class="about-icon" aria-hidden="true">
-        <svg viewBox="0 0 64 64" fill="none">
-          <circle cx="32" cy="32" r="30" stroke="currentColor" stroke-width="1.5" opacity="0.3"/>
-          <path d="M20 16C20 16 16 24 16 32C16 40 20 48 26 48C29 48 31 45 32 43C33 45 35 48 38 48C44 48 48 40 48 32C48 24 44 16 44 16" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-          <path d="M26 16C26 20 29 23 32 23C35 23 38 20 38 16" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <div class="about-icon">
+        <svg viewBox="0 0 48 48" fill="none">
+          <path d="M14 10C14 10 10 18 10 24C10 30 14 36 18.5 36C21 36 22 34 23 32.5C24 34 25 36 27.5 36C32 36 36 30 36 24C36 18 32 10 32 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+          <path d="M18.5 10C18.5 13 21 15 23 15C25 15 27.5 13 27.5 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
         </svg>
       </div>
       <h2 id="aboutTitle">OdontoHC</h2>
-      <p class="about-version">Historia Clínica Dental · Versión 1.1</p>
-      <div class="about-divider"></div>
-      <p class="about-author">Autor</p>
+      <p class="about-ver">Historia Clínica Dental · v1.1</p>
+      <hr class="about-hr"/>
+      <p class="about-by">Autor</p>
       <p class="about-name">José Manuel Fernández Carreira</p>
-      <p class="about-desc">Aplicación desarrollada para la gestión integral de historias clínicas odontológicas. Funciona completamente en el navegador, sin servidor ni conexión a Internet. Los datos se almacenan en el dispositivo del usuario.</p>
-      <div class="about-divider"></div>
-      <p class="about-tech">HTML5 · CSS3 · JavaScript ES6+ · LocalStorage · jsPDF</p>
+      <p class="about-desc">Aplicación para gestión integral de historias clínicas odontológicas. Funciona completamente en el navegador, sin servidor. Los datos se almacenan localmente en el dispositivo.</p>
+      <hr class="about-hr"/>
+      <span class="about-tech">HTML5 · CSS3 · JS ES6+ · LocalStorage · jsPDF</span>
     </div>
   </div>
 </div>
 
 <!-- Toast -->
 <div class="toast" id="toast" role="alert" aria-live="assertive" aria-atomic="true"></div>
-
-<!-- Input oculto para importar JSON -->
-<input type="file" id="importFileInput" accept=".json" aria-hidden="true" tabindex="-1" style="display:none"/>
+<input type="file" id="importFileInput" accept=".json" style="display:none"/>
 
 <script src="app.js"></script>
 </body>
